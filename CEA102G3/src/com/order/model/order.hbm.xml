@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.order.model.OrderVO" table="guideme.order" >
+        
+        <id name="orderNo" column="Order_No">
+            <generator class="identity" />
+        </id>
+        
+        <property name="memberNo" column="Member_No" />
+        <property name="orderDate" column="Order_Date" />
+        <property name="sum" column="Sum" />
+        <property name="creditCardNo" column="Credit_Card_No" />
+       	 
+      	<set name="orderItems" table="order_item" lazy="true" cascade="all" inverse="true"
+      		order-by="Order_No asc">
+      		<key><column name="Order_No"/></key>	
+      		<one-to-many class="com.order_item.model.OrderItemVO" />
+      	</set>
+        
+    </class>
+</hibernate-mapping>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.product.model.ProductVO" table="guideme.product" >
+        
+        <id name="productNo" column="Product_No">
+            <generator class="identity" />
+        </id>
+        
+        <property name="productName" column="product_name" />
+        <property name="listPrice" column="list_price" />
+        <property name="descr" column="descr" />
+        <property name="totalRateCount" column="total_rate_count" />
+        <property name="totalRate" column="total_rate" />
+        <property name="productStatus" column="product_status"/>
+        <property name="productPic1" column="product_pic1"/>
+        <property name="productPic2" column="product_pic2"/>
+        <property name="productPic3" column="product_pic3"/>
+        
+        <set name="orderItems" table="order_item" lazy="true" cascade="all"
+        	inverse="true" order-by="order_no asc" >
+        	<key><column name="order_no" ></column></key>
+        	<one-to-many class="com.order_item.model.OrderItemVO"></one-to-many>
+        </set> 
+        
+    </class>
+</hibernate-mapping>
+
